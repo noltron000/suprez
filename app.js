@@ -1,13 +1,15 @@
-var createError = require('http-errors');
-var express = require('express');
-var exphbs = require('express-handlebars');
-var path = require('path');
+var createError  = require('http-errors');
+var express      = require('express');
+var exphbs       = require('express-handlebars');
+var path         = require('path');
 var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+var logger       = require('morgan');
+var dotenv       = require('dotenv').config();
+
 
 // routes
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var indexRouter  = require('./routes/index');
+var usersRouter  = require('./routes/users');
 var giphyRouter  = require('./routes/giph');
 
 var app = express();
