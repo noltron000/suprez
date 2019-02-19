@@ -1,9 +1,10 @@
 const express = require('express');
-const router = express.Router();
-const User = require('../models/user');
-const auth = require('./helpers/auth');
+const router  = express.Router();
+const User    = require('../models/user');
+const auth    = require('./helpers/auth');
 
-var http = require('http');
+var http      = require('http');
+var giphy     = require('giphy-api')();
 
 // GIPHY API
 router.get('/', function (req, res) {
@@ -28,7 +29,7 @@ router.get('/', function (req, res) {
 
         response.on('end', function() {
             // retrieves finished data and parses it (JSON)
-            var parse = JSON.parse(body);
+            var parsed = JSON.parse(body);
             // renders the home template and pass gif data to template
             res.render('gif-home', {gifs: parsed.data})
         });
@@ -41,6 +42,12 @@ router.get('/', function (req, res) {
     console.log(req.query);
     res.render('gif-home', {});
 })
+
+router.get('/', function(req, res) {
+    giphy.search(req.query.term, function (err, response) {
+        res.render('gif-home', {gifs: response.data})
+    });
+});
 
 
 
