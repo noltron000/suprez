@@ -1,2 +1,6 @@
+test.json
+settings.json
 .DS_store
-*/node_modules
+.env
+/node_modules
+/.vscode
